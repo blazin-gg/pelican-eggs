@@ -1,0 +1,61 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v1",
+        "update_url": null
+    },
+    "exported_at": "2025-01-01T22:18:58+00:00",
+    "name": "Blazin.gg Song Uploader",
+    "author": "tom@tomdotbat.dev",
+    "uuid": "e448459a-e562-4240-9851-7a6baff75c80",
+    "description": "Creates a container that hosts the Blazin.gg song uploader.",
+    "features": [],
+    "docker_images": {
+        "Python 3.12": "ghcr.io\/parkervcp\/yolks:python_3.12"
+    },
+    "file_denylist": [],
+    "startup": "pip install -U --prefix .local -r requirements.txt; \/usr\/local\/bin\/python -m gunicorn -w {{WORKERS}} -k gthread --threads {{THREADS}} -b 0.0.0.0:{{SERVER_PORT}} server:app",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Listening at:\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\napt update\r\napt install -y curl jq file unzip make gcc g++ libtool ffmpeg",
+            "container": "python:3.8-slim-bookworm",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Workers",
+            "description": "The number of worker processes to spawn.",
+            "env_variable": "WORKERS",
+            "default_value": "4",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "numeric",
+                "min:1"
+            ],
+            "sort": 1
+        },
+        {
+            "name": "Threads",
+            "description": "The amount of threads to use.",
+            "env_variable": "THREADS",
+            "default_value": "2",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "numeric",
+                "min:1"
+            ],
+            "sort": 2
+        }
+    ]
+}
