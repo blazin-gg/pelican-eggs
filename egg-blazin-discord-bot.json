@@ -1,0 +1,32 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-06-02T14:43:51+00:00",
+    "name": "Blazin.gg Discord Bot",
+    "author": "tom@tomdotbat.dev",
+    "uuid": "d0371bfb-1592-4f77-a7de-26f8d69e5e77",
+    "description": "Creates a container that hosts the Blazin.gg Discord bot.",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:java_21": "ghcr.io\/parkervcp\/yolks:java_21"
+    },
+    "file_denylist": [],
+    "startup": "java -Dterminal.jline=false -Dterminal.ansi=true -jar bot.jar",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Finished Loading!\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\nPROJECT=java\r\n\r\napt update\r\napt install -y curl jq",
+            "container": "ghcr.io\/parkervcp\/yolks:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
